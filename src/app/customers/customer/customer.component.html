@@ -1,0 +1,130 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Создать Клиента</h4>
+  </div>
+  <div class="card-body">
+    <form #form="ngForm" (ngSubmit)="onCreate(form)">
+      <div class="row">
+        <div class="ml-3 mt-3">
+          <label for="name" class="form-label">Имя</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            placeholder="Имя"
+            ngModel
+            required
+            #nameField="ngModel"
+            [class.field-error]="form.submitted && nameField.invalid"
+          />
+        </div>
+        <div class="ml-3 mt-3">
+          <label for="nickName" class="form-label">Никнейм</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nickName"
+            name="nickName"
+            placeholder="Имя или Никнейм"
+            ngModel
+          />
+        </div>
+        <div class="ml-3 mt-3">
+          <label for="compName" class="form-label">Компания (Если есть)</label>
+          <input
+            type="text"
+            class="form-control"
+            id="compName"
+            name="compName"
+            placeholder="Компания"
+            ngModel
+          />
+        </div>
+        <div class="ml-3 mt-3">
+          <label for="mobile">Номер Телефона</label>
+          <input
+            type="text"
+            class="form-control"
+            id="mobile"
+            name="mobile"
+            placeholder="Номер Телефона"
+            ngModel
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="ml-3 mt-3">
+          <label for="instaName" class="form-label">Instagram</label>
+          <input
+            type="text"
+            class="form-control"
+            id="instaName"
+            name="instaName"
+            placeholder="Instagram"
+            ngModel
+          />
+        </div>
+        <div class="ml-3 mt-3">
+          <label for="fbName" class="form-label">Facebook</label>
+          <input
+            type="text"
+            class="form-control"
+            id="fbName"
+            name="fbName"
+            placeholder="Facebook"
+            ngModel
+          />
+        </div>
+        <div class="ml-3 mt-3">
+          <label for="email">Эл. Почта</label>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            name="email"
+            placeholder="Email"
+            ngModel
+          />
+        </div>
+        <div class="from-check ml-5 mt-5">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            ngModel
+            id="flexCheckDefault"
+            name="photographer"
+          />
+          <label class="form-check-label" for="flexCheckDefault">
+            Фотограф
+          </label>
+        </div>
+      </div>
+
+      <div class="row mt-4 ml-2">
+        <div>
+          <button type="submit" class="btn btn-dark p-2">
+            Создать Клиента
+          </button>
+        </div>
+        <div [hidden]="!postError" class="alert alert-danger ml-3" role="alert">
+          {{ errorMessage }}
+        </div>
+        <div
+          [hidden]="!existsClient"
+          class="alert alert-danger ml-3"
+          role="alert"
+        >
+          {{ exists }}
+        </div>
+        <div
+          [hidden]="!postSuccess"
+          class="alert alert-success ml-3"
+          role="alert"
+        >
+          {{ successMessage }}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

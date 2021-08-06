@@ -1,0 +1,98 @@
+<div>
+  <h4>Закрытые Сессии</h4>
+  <div class="j">
+    <form class="jb" #form="ngForm" (ngSubmit)="onSubmitSort(form)">
+      <div class="row">
+        <div class="ml-1 mb-2">
+          <label for="sort">Год, Месяц</label>
+          <select
+            class="form-control form-select"
+            name="sortDate"
+            id="sort"
+            ngModel
+          >
+            <option selected>Выбрать</option>
+            <option *ngFor="let s of dates">
+              {{ s }}
+            </option>
+          </select>
+        </div>
+        <div class="ml-1 mb-2">
+          <label for="sortd">Клиент</label>
+          <select
+            class="form-control form-select"
+            name="sortClient"
+            id="sortd"
+            ngModel
+          >
+            <option selected>Выбрать</option>
+            <option *ngFor="let c of customers">
+              {{ c.uniqueName }}
+            </option>
+          </select>
+        </div>
+        <div class="ml-1 mb-2">
+          <label for="sortc">Фотограф</label>
+          <select
+            class="form-control form-select"
+            name="sortPhoto"
+            id="sortc"
+            ngModel
+          >
+            <option selected>Выбрать</option>
+            <option *ngFor="let p of photographers">
+              {{ p.uniqueName }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-dark mb-2 fjak">Подтвердить</button>
+    </form>
+  </div>
+
+  <table class="table table-responsive">
+    <thead>
+      <tr>
+        <th scope="col">Дата</th>
+        <th scope="col">Время</th>
+        <th scope="col">Клиент</th>
+        <th scope="col">Фотограф</th>
+        <th scope="col">Тариф</th>
+        <th scope="col">Часы</th>
+        <th scope="col">Сумма</th>
+        <th scope="col">Действия</th>
+      </tr>
+    </thead>
+    <div *ngIf="isLoading" class="spinner-border" role="status"></div>
+    <tbody *ngIf="closed.length >= 1 && !isLoading">
+      <tr
+        [ngStyle]="{
+          'background-color': i.pricePaid
+            ? '#fbfbfb'
+            : i.depositPaid
+            ? '#c4ffc4'
+            : '#FF9696'
+        }"
+        *ngFor="let i of closed"
+      >
+        <td>{{ i.date | date }}</td>
+        <td>{{ i.start }} - {{ i.finish }}</td>
+        <td>{{ i.customerName }}</td>
+        <td>{{ i.photographerName }}</td>
+        <td>{{ i.packType }}</td>
+        <td>{{ i.hours }}</td>
+        <td>{{ i.price }}</td>
+        <td>
+          <img
+            src="../../../assets/bxs-edit.svg"
+            [routerLink]="['/edit-session', i.id]"
+            loading="lazy"
+          />
+        </td>
+      </tr>
+    </tbody>
+    <h4 class="center" *ngIf="closed.length < 1 && !isLoading">
+      Нет Закрытых Сессий!
+    </h4>
+  </table>
+</div>

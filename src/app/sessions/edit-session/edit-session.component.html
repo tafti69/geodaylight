@@ -1,0 +1,200 @@
+<div class="card">
+  <div class="card-header"><h4>Обновление Сессии</h4></div>
+  <div class="card-body">
+    <form class="pr-3" #form="ngForm" (ngSubmit)="saveChanges()">
+      <div class="row">
+        <div class="ml-3 mt-3">
+          <label for="date" class="form-label">Date</label>
+          <input
+            type="date"
+            class="form-control"
+            id="date"
+            name="date"
+            required
+            [(ngModel)]="sessions.date"
+          />
+          <h5 class="mt-2">{{ sessions.date | date }}</h5>
+        </div>
+        <div class="ml-3 mt-3">
+          <label for="client" class="form-label">Клиент</label>
+          <select
+            class="form-control form-select"
+            name="customerName"
+            id="client"
+            required
+            [(ngModel)]="sessions.customerName"
+          >
+            <!-- <option selected>{{ sessions.customerName }}</option> -->
+            <option *ngFor="let c of customers" [value]="c.uniqueName">
+              {{ c.uniqueName }}
+            </option>
+          </select>
+        </div>
+        <div class="ml-3 mt-3">
+          <label for="photographer" class="form-label">Фотограф</label>
+          <select
+            class="form-control form-select"
+            name="photographerName"
+            id="photographer"
+            [(ngModel)]="sessions.photographerName"
+          >
+            <!-- <option selected>{{ sessions.photographerName }}</option> -->
+            <option *ngFor="let f of photographers" [value]="f.uniqueName">
+              {{ f.uniqueName }}
+            </option>
+          </select>
+        </div>
+        <div class="ml-3 mt-3">
+          <label for="tariff">Тариф</label>
+          <select
+            class="form-control form-select"
+            name="packType"
+            id="tariff"
+            required
+            [(ngModel)]="sessions.packType"
+          >
+            <option *ngFor="let t of tariffPack" [value]="t.name">
+              {{ t.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="ml-3 mt-3">
+          <label for="from" class="form-label">Начало</label>
+          <input
+            type="time"
+            class="form-control"
+            id="from"
+            name="start"
+            required
+            [(ngModel)]="sessions.start"
+          />
+        </div>
+        <div class="ml-3 mt-3">
+          <label for="to" class="form-label">Конец</label>
+          <input
+            type="time"
+            class="form-control"
+            id="to"
+            name="finish"
+            required
+            [(ngModel)]="sessions.finish"
+          />
+        </div>
+        <div class="hours ml-3 mt-3">
+          <label for="gel" class="form-label">Цена</label>
+          <input
+            type="number"
+            class="form-control"
+            id="gel"
+            name="price"
+            placeholder="GEL"
+            [(ngModel)]="sessions.price"
+          />
+        </div>
+        <div class="hours ml-3 mt-3">
+          <label for="gel" class="form-label">Депозит</label>
+          <input
+            type="number"
+            class="form-control"
+            id="gel"
+            name="deposit"
+            placeholder="GEL"
+            [(ngModel)]="sessions.deposit"
+          />
+        </div>
+
+        <div class="ml-3 mt-3">
+          <label for="payment">Метод Оплаты</label>
+          <select
+            class="form-control form-select"
+            name="payType"
+            id="payment"
+            required
+            [(ngModel)]="sessions.payType"
+          >
+            <option *ngFor="let p of paymentMethod | keyvalue">
+              {{ p.value }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="checks-row">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            name="depositPaid"
+            [(ngModel)]="sessions.depositPaid"
+            id="flexCheckDefault"
+          />
+          <label class="form-check-label" for="flexCheckDefault">
+            Депозит Оплачен</label
+          >
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            name="pricePaid"
+            [(ngModel)]="sessions.pricePaid"
+            id="flexCheckDefault"
+          />
+          <label class="form-check-label" for="flexCheckDefault">
+            Цена Оплачена</label
+          >
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            name="caseClosed"
+            [(ngModel)]="sessions.caseClosed"
+            id="flexCheckDefault"
+          />
+          <label class="form-check-label" for="flexCheckDefault">
+            Закрыть</label
+          >
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            name="canceled"
+            [(ngModel)]="sessions.canceled"
+            id="flexCheckDefault"
+          />
+          <label class="form-check-label" for="flexCheckDefault">
+            Отменить</label
+          >
+        </div>
+      </div>
+
+      <div class="row mt-4 ml-2">
+        <div>
+          <button type="submit" class="btn btn-dark p-2">Сохранить</button>
+        </div>
+        <div [hidden]="!success" class="alert alert-success ml-3" role="alert">
+          {{ successMessage }}
+        </div>
+        <div>
+          <button
+            type="button"
+            (click)="onDeleteSession(sessions.id)"
+            class="btn btn-danger ml-3 p-2"
+          >
+            Удалить
+          </button>
+        </div>
+        <div
+          [hidden]="!deleteMessage"
+          class="alert alert-danger ml-3"
+          role="alert"
+        >
+          {{ deleteMessage }}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

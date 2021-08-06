@@ -1,0 +1,58 @@
+<div class="card">
+  <div class="card-header"><h4>Обновить Тариф</h4></div>
+  <div class="card-body p-3">
+    <form #form="ngForm" (ngSubmit)="saveChanges()">
+      <div class="row">
+        <div class="ml-3">
+          <label for="name">Имя</label>
+          <input
+            id="name"
+            class="form-control"
+            type="text"
+            name="name"
+            placeholder="Имя"
+            [(ngModel)]="tariffs.name"
+          />
+        </div>
+        <div class="ml-3">
+          <label for="first">Начальная Цена</label>
+          <input
+            id="first"
+            class="form-control"
+            type="number"
+            name="firstPrice"
+            placeholder="Начальная Цена"
+            [(ngModel)]="tariffs.firstPrice"
+          />
+        </div>
+        <div class="ml-3">
+          <label for="second">Последующая Цена</label>
+          <input
+            id="second"
+            class="form-control"
+            type="number"
+            name="nextPrice"
+            placeholder="Последующая Цена"
+            [(ngModel)]="tariffs.nextPrice"
+          />
+        </div>
+        <div class="ml-3">
+          <label for="abs">Абсолютная Цена</label>
+          <input
+            class="form-control"
+            type="number"
+            name="absolutPrice"
+            placeholder="Абсолютная Цена"
+            [(ngModel)]="tariffs.absolutPrice"
+          />
+        </div>
+      </div>
+      <div class="row mt-4 ml-1">
+        <button type="submit" class="btn btn-dark">Сохранить</button>
+        <div [hidden]="!success" class="alert alert-success ml-3" role="alert">
+          {{ successMessage }}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

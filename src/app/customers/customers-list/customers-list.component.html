@@ -1,0 +1,61 @@
+<app-customer></app-customer>
+<div *ngIf="deleteMessage !== ''" class="alert alert-danger g" role="alert">
+  {{ deleteMessage }}
+</div>
+<h4 class="center" *ngIf="customers.length < 1 && !isLoading">Клиентов Нет!</h4>
+<div>
+  <h4 class="ml-5">Список Клиентов</h4>
+  <table class="table table-responsive">
+    <div *ngIf="isLoading" class="spinner-border" role="status"></div>
+    <tbody *ngIf="customers.length >= 1 && !isLoading">
+      <tr *ngFor="let c of customers">
+        <td>{{ c.name }}</td>
+        <td>{{ c.nickName }}</td>
+        <td>{{ c.compName }}</td>
+        <td>
+          <a href="tel: {{ c.phone }}">{{ c.phone }}</a>
+        </td>
+        <td>
+          <a target="_blank" rel="noopener noreferrer" href="{{ c.instaLink }}"
+            ><img [src]="c.instaAnswer" alt=""
+          /></a>
+        </td>
+        <td>
+          <a target="_blank" rel="noopener noreferrer" href="{{ c.fbLink }}"
+            ><img [src]="c.fbAnswer" alt=""
+          /></a>
+        </td>
+        <td>
+          <a target="_blank" rel="noopener noreferrer" href="mailto: c.email"
+            ><img [src]="c.emailAnswer" alt=""
+          /></a>
+        </td>
+
+        <td>
+          <a
+            [routerLink]="
+              c.photograph
+                ? ['/results-by-photographers', c.uniqueName]
+                : ['/results-by-customer', c.uniqueName]
+            "
+            ><img [src]="c.photographAnswer" alt=""
+          /></a>
+        </td>
+        <td>
+          <img
+            [src]="c.notesAnswer"
+            [routerLink]="['/messages', c.id]"
+            loading="lazy"
+          />
+        </td>
+        <td>
+          <img
+            src="../../../assets/bxs-edit.svg"
+            [routerLink]="['/edit-customer', c.id]"
+            loading="lazy"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

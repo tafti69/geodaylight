@@ -1,0 +1,50 @@
+<div class="card">
+  <div class="card-header">
+    <h4>Создать Заметку</h4>
+  </div>
+  <div class="card-body">
+    <form #form="ngForm" (ngSubmit)="createMessage(form)">
+      <div class="msg-wrapper">
+        <div>
+          <label for="name" class="form-label">Заметка</label>
+          <textarea
+            cols="80"
+            rows="5"
+            class="form-control"
+            id="name"
+            name="text"
+            placeholder="Напишите заметку"
+            ngModel
+            required
+            #nameField="ngModel"
+            [class.field-error]="form.submitted && nameField.invalid"
+          >
+          </textarea>
+        </div>
+        <button type="submit" class="btn btn-dark zam">Создать</button>
+        <div
+          [hidden]="!postSuccess"
+          class="alert alert-success ml-3"
+          role="alert"
+        >
+          {{ successMessage }}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<h4 class="center" *ngIf="messages.length < 1 && !isLoading">Заметок Нет!</h4>
+<div *ngIf="isLoading" class="spinner-border" role="status"></div>
+<div *ngIf="messages.length >= 1 && !isLoading">
+  <h4>Заметки</h4>
+  <div class="msg" *ngFor="let item of messages">
+    <div class="msg-box">
+      <span class="msg-date">
+        {{ item.date | date }}
+      </span>
+      <p style="margin: 0">
+        {{ item.text }}
+      </p>
+    </div>
+  </div>
+</div>

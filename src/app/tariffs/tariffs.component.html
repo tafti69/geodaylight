@@ -1,0 +1,111 @@
+<div class="card">
+  <div class="card-header"><h4>Создать Тариф</h4></div>
+  <div class="card-body">
+    <form #form="ngForm" (ngSubmit)="onCreate(form)">
+      <div class="row">
+        <div class="ml-3 mt-3">
+          <label for="name">Имя</label>
+          <input
+            id="name"
+            class="form-control"
+            type="text"
+            name="name"
+            placeholder="Имя"
+            ngModel
+            required
+            #nameField="ngModel"
+            [class.field-error]="form.submitted && nameField.invalid"
+          />
+        </div>
+        <div class="ml-3 mt-3">
+          <label for="first">Начальная Цена</label>
+          <input
+            id="first"
+            class="form-control"
+            type="number"
+            name="firstPrice"
+            placeholder="Начальная Цена"
+            ngModel
+          />
+        </div>
+        <div class="ml-3 mt-3">
+          <label for="second">Последующая Цена</label>
+          <input
+            id="second"
+            class="form-control"
+            type="number"
+            name="nextPrice"
+            placeholder="Последующая Цена"
+            ngModel
+          />
+        </div>
+        <div class="ml-3 mt-3">
+          <label for="abs">Абсолютная Цена</label>
+          <input
+            class="form-control"
+            type="number"
+            name="absolutPrice"
+            placeholder="Абсолютная Цена"
+            ngModel
+          />
+        </div>
+      </div>
+      <div class="row mt-4 ml-2">
+        <div>
+          <button type="submit" class="btn btn-dark p-2">Создать Тариф</button>
+        </div>
+        <div [hidden]="!postError" class="alert alert-danger ml-3" role="alert">
+          {{ errorMessage }}
+        </div>
+        <div
+          [hidden]="!postSuccess"
+          class="alert alert-success ml-3"
+          role="alert"
+        >
+          {{ successMessage }}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="wrapper">
+  <h4>Список Тарифов</h4>
+  <table class="table table-responsive">
+    <thead>
+      <tr>
+        <th scope="col">Имя</th>
+        <th scope="col">Начальная Цена</th>
+        <th scope="col">Последующая Цена</th>
+        <th scope="col">Абсолютная Цена</th>
+        <th scope="col">Действия</th>
+      </tr>
+    </thead>
+    <h4 class="center" *ngIf="tariffs.length < 1 && !isLoading">
+      Тарифов Нет!
+    </h4>
+    <div *ngIf="isLoading" class="spinner-border" role="status"></div>
+    <tbody *ngIf="tariffs.length >= 1 && !isLoading">
+      <tr *ngFor="let c of tariffs">
+        <td>{{ c.name }}</td>
+        <td>{{ c.firstPrice }}</td>
+        <td>{{ c.nextPrice }}</td>
+        <td>{{ c.absolutPrice }}</td>
+        <td>
+          <img
+            src="../../../assets/bxs-edit.svg"
+            [routerLink]="['/edit-tariff', c.id]"
+            loading="lazy"
+          />
+
+          <img
+            src="../../../assets/bxs-x-square.svg"
+            (click)="onDeleteTariff(c.id)"
+            class="ml-2"
+            loading="lazy"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

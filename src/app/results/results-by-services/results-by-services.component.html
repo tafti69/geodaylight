@@ -1,0 +1,131 @@
+<h4>Результаты по Сервисам</h4>
+<div class="j">
+  <form class="jb" #form="ngForm">
+    <div class="row">
+      <div class="ml-1 mb-2">
+        <label for="sort">Год</label>
+        <select
+          class="form-control form-select"
+          name="sortYear"
+          id="sort"
+          ngModel
+        >
+          <option selected>Выбрать</option>
+          <option *ngFor="let y of years">
+            {{ y }}
+          </option>
+        </select>
+      </div>
+      <div class="ml-1 mb-2">
+        <label for="sort">Месяц</label>
+        <select
+          class="form-control form-select"
+          name="sortMonth"
+          id="sort"
+          ngModel
+        >
+          <option selected>Выбрать</option>
+          <option *ngFor="let m of months">
+            {{ m }}
+          </option>
+        </select>
+      </div>
+      <div class="ml-1 mb-2">
+        <label for="sortc">Сервисы</label>
+        <select
+          class="form-control form-select"
+          name="sortName"
+          id="sortc"
+          ngModel
+        >
+          <option selected>Выбрать</option>
+          <option *ngFor="let s of services">
+            {{ s }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <button
+      (click)="onSubmitSortHours(form)"
+      type="button"
+      class="btn btn-dark mb-2 rt"
+    >
+      По часам
+    </button>
+    <button
+      (click)="onSubmitSortMoney(form)"
+      type="button"
+      class="btn btn-success mb-2 bh"
+    >
+      По деньгам
+    </button>
+  </form>
+</div>
+
+<div *ngIf="isLoading" class="spinner-border" role="status"></div>
+<div *ngIf="!nameApply; else elseBlock" class="wrapper">
+  <table
+    *ngIf="currentPackResults && !isLoading"
+    class="table table-responsive"
+  >
+    <thead>
+      <tr>
+        <th scope="col">Сервис</th>
+        <th scope="col">Часы</th>
+        <th scope="col">Общая Сумма</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let z of currentPackResults.results">
+        <td>{{ z.packName }}</td>
+        <td>{{ z.hours }}</td>
+        <td>{{ z.lari }}</td>
+      </tr>
+    </tbody>
+    <div class="h">
+      <tr class="table-secondary vs">
+        <th scope="col">Итоги за {{ currentPackResults.date }}:</th>
+        <td>Сумма: {{ currentPackResults.total }} лари</td>
+        <td>
+          Всего часов:
+          {{ currentPackResults.totalHours }}
+        </td>
+      </tr>
+    </div>
+  </table>
+</div>
+
+<ng-template #elseBlock>
+  <div *ngFor="let a of packRes">
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th scope="col">Год - Месяц</th>
+          <th scope="col">Часы</th>
+          <th scope="col">Общая Сумма</th>
+          <th scope="col">Среднее/Час</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let z of a.summaries">
+          <td>{{ z.date }}</td>
+          <td>{{ z.hours }}</td>
+          <td>{{ z.total }}</td>
+          <td>{{ z.average }}</td>
+        </tr>
+      </tbody>
+      <div class="h">
+        <tr class="table-secondary">
+          <th scope="col">Итоги за {{ a.year }}:</th>
+        </tr>
+        <tr class="table-secondary vs">
+          <td>Сумма: {{ a.total }} лари</td>
+          <td>
+            Всего часов:
+            {{ a.totalHours }}
+          </td>
+        </tr>
+      </div>
+    </table>
+  </div>
+</ng-template>

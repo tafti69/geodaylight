@@ -1,0 +1,39 @@
+<div>
+  <h4>Отменённые Сессии</h4>
+  <table class="table table-responsive">
+    <thead>
+      <tr>
+        <th scope="col">Дата</th>
+        <th scope="col">Время</th>
+        <th scope="col">Клиент</th>
+        <th scope="col">Фотограф</th>
+        <th scope="col">Тариф</th>
+        <th scope="col">Часы</th>
+        <th scope="col">Депозит</th>
+        <th scope="col">Действия</th>
+      </tr>
+    </thead>
+    <div *ngIf="isLoading" class="spinner-border" role="status"></div>
+    <tbody *ngIf="canceled.length >= 1 && !isLoading">
+      <tr *ngFor="let c of canceled">
+        <td>{{ c.date | date }}</td>
+        <td>{{ c.start }} - {{ c.finish }}</td>
+        <td>{{ c.customerName }}</td>
+        <td>{{ c.photographerName }}</td>
+        <td>{{ c.packType }}</td>
+        <td>{{ c.hours }}</td>
+        <td>{{ c.depositPaid ? c.deposit : 0 }}</td>
+        <td>
+          <img
+            src="../../../assets/bxs-edit.svg"
+            [routerLink]="['/edit-session', c.id]"
+            loading="lazy"
+          />
+        </td>
+      </tr>
+    </tbody>
+    <h4 class="center" *ngIf="canceled.length < 1 && !isLoading">
+      Нет Отменённых Сессий!
+    </h4>
+  </table>
+</div>

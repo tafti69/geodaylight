@@ -1,0 +1,138 @@
+<nav *ngIf="isAuth" class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="['/']">GeoDayLight</a>
+    <div class="nav-row">
+      <div class="dropdown">
+        <button class="dropbtn">Сессии</button>
+        <div class="dropdown-content">
+          <a
+            [routerLink]="['/all-sessions']"
+            routerLinkActive="router-link-active"
+            >Открытые Сессии</a
+          >
+          <a
+            [routerLink]="['/cancelled-sessions']"
+            routerLinkActive="router-link-active"
+            >Отменённые Сессии</a
+          >
+          <a
+            [routerLink]="['/closed-sessions']"
+            routerLinkActive="router-link-active"
+            >Закрытые Сессии</a
+          >
+        </div>
+      </div>
+
+      <div class="dropdown">
+        <button class="dropbtn">Результаты</button>
+        <div class="dropdown-content">
+          <a
+            [routerLink]="['/results-summary']"
+            routerLinkActive="router-link-active"
+            >Суммарные Результаты</a
+          >
+
+          <a
+            [routerLink]="['/results-by-customer']"
+            routerLinkActive="router-link-active"
+            >Результаты по Клиентам</a
+          >
+          <a
+            [routerLink]="['/results-by-photographers']"
+            routerLinkActive="router-link-active"
+            >Результаты по Фотографам</a
+          >
+          <a
+            [routerLink]="['/results-by-services']"
+            routerLinkActive="router-link-active"
+            >Результаты по Сервисам</a
+          >
+        </div>
+      </div>
+      <a
+        class="rebel"
+        [routerLink]="['/customers-list']"
+        routerLinkActive="router-link-active"
+        >Список Клиентов</a
+      >
+
+      <a
+        class="rebel"
+        [routerLink]="['/tariffs']"
+        routerLinkActive="router-link-active"
+        >Тарифы</a
+      >
+      <button (click)="onLogout()" class="btn btn-light m-3 z">Выйти</button>
+    </div>
+  </div>
+</nav>
+
+<div *ngIf="isAuth" class="headerm">
+  <div class="rowr">
+    <img (click)="toggleCollapse()" src="../../assets/bx-menu.svg" alt="" />
+    <button (click)="onLogout()" class="btn btn-dark">Выйти</button>
+  </div>
+  <div *ngIf="collapse" class="burger">
+    <ul>
+      <a
+        (click)="toggleCollapse()"
+        [routerLink]="['/all-sessions']"
+        routerLinkActive="router-link-active"
+        >Открытые Сессии</a
+      >
+      <a
+        (click)="toggleCollapse()"
+        [routerLink]="['/closed-sessions']"
+        routerLinkActive="router-link-active"
+        >Закрытые Сессии</a
+      >
+
+      <a
+        (click)="toggleCollapse()"
+        [routerLink]="['/cancelled-sessions']"
+        routerLinkActive="router-link-active"
+        >Отменённые Сессии</a
+      >
+
+      <a
+        (click)="toggleCollapse()"
+        [routerLink]="['/customers-list']"
+        routerLinkActive="router-link-active"
+        >Список Клиентов</a
+      >
+
+      <a
+        (click)="toggleCollapse()"
+        [routerLink]="['/results-summary']"
+        routerLinkActive="router-link-active"
+        >Суммарные Результаты</a
+      >
+
+      <a
+        (click)="toggleCollapse()"
+        [routerLink]="['/results-by-customer']"
+        routerLinkActive="router-link-active"
+        >Результаты по Клиентам</a
+      >
+      <a
+        (click)="toggleCollapse()"
+        [routerLink]="['/results-by-photographers']"
+        routerLinkActive="router-link-active"
+        >Результаты по Фотографам</a
+      >
+      <a
+        (click)="toggleCollapse()"
+        [routerLink]="['/results-by-services']"
+        routerLinkActive="router-link-active"
+        >Результаты по Сервисам</a
+      >
+
+      <a
+        (click)="toggleCollapse()"
+        [routerLink]="['/tariffs']"
+        routerLinkActive="router-link-active"
+        >Тарифы</a
+      >
+    </ul>
+  </div>
+</div>

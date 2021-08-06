@@ -1,0 +1,41 @@
+<h4>Суммарные результаты</h4>
+<div *ngIf="isLoading" class="spinner-border" role="status"></div>
+<div *ngIf="results.length >= 1 && !isLoading" class="wrapper">
+  <div *ngFor="let r of results">
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th scope="col">Дата</th>
+          <th scope="col">Общая Сумма</th>
+          <th scope="col">% Изменения</th>
+          <th scope="col">ВТЧ Банк</th>
+          <th scope="col">Часы Закр. Сессий</th>
+          <th scope="col">Лари/Час</th>
+          <th scope="col">Клиентов/Месяц</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of r.summaries">
+          <td>{{ s.date }}</td>
+          <td>{{ s.total }}</td>
+          <td>{{ s.percentage }}</td>
+          <td>{{ s.bank }}</td>
+          <td class="v">{{ s.closedSessionsHours }}</td>
+          <td>{{ s.lariPerHour }}</td>
+          <td class="v">{{ s.countOfCustomers }}</td>
+        </tr>
+      </tbody>
+      <div class="h">
+        <tr class="table-secondary vs">
+          <th scope="col">Итоги за {{ r.year }}:</th>
+          <td>Сумма: {{ r.total }} лари</td>
+          <td>
+            Всего часов:
+            {{ r.totalHours }}
+          </td>
+          <td>Всего от банка: {{ r.totalBank }} лари</td>
+        </tr>
+      </div>
+    </table>
+  </div>
+</div>
