@@ -35,11 +35,14 @@ export class EditSessionComponent implements OnInit {
     private tariffS: TariffService
   ) {}
 
+    // just cheking git == ++
+
   ngOnInit() {
     let sessionId = +this.route.snapshot.params['id'];
     this.sesServ.getSessionById(sessionId).subscribe(
       (data: Sessions) => {
         this.sessions = data;
+        console.log(data);
       },
       (err: any) => console.log(err)
     );

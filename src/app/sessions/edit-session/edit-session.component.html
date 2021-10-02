@@ -1,3 +1,5 @@
+ <!-- just cheking git == ++ -->
+
 <div class="card">
   <div class="card-header"><h4>Обновление Сессии</h4></div>
   <div class="card-body">
@@ -16,7 +18,7 @@
           <h5 class="mt-2">{{ sessions.date | date }}</h5>
         </div>
         <div class="ml-3 mt-3">
-          <label for="client" class="form-label">Клиент</label>
+          <label for="client" class="form-label">Customer</label>
           <select
             class="form-control form-select"
             name="customerName"
@@ -31,7 +33,7 @@
           </select>
         </div>
         <div class="ml-3 mt-3">
-          <label for="photographer" class="form-label">Фотограф</label>
+          <label for="photographer" class="form-label">Photo/Videographer</label>
           <select
             class="form-control form-select"
             name="photographerName"
@@ -45,7 +47,7 @@
           </select>
         </div>
         <div class="ml-3 mt-3">
-          <label for="tariff">Тариф</label>
+          <label for="tariff">Payment Plan</label>
           <select
             class="form-control form-select"
             name="packType"
@@ -61,7 +63,7 @@
       </div>
       <div class="row mt-3">
         <div class="ml-3 mt-3">
-          <label for="from" class="form-label">Начало</label>
+          <label for="from" class="form-label">Start</label>
           <input
             type="time"
             class="form-control"
@@ -72,7 +74,7 @@
           />
         </div>
         <div class="ml-3 mt-3">
-          <label for="to" class="form-label">Конец</label>
+          <label for="to" class="form-label">End</label>
           <input
             type="time"
             class="form-control"
@@ -83,7 +85,7 @@
           />
         </div>
         <div class="hours ml-3 mt-3">
-          <label for="gel" class="form-label">Цена</label>
+          <label for="gel" class="form-label">Cost</label>
           <input
             type="number"
             class="form-control"
@@ -93,8 +95,11 @@
             [(ngModel)]="sessions.price"
           />
         </div>
+
+       
+
         <div class="hours ml-3 mt-3">
-          <label for="gel" class="form-label">Депозит</label>
+          <label for="gel" class="form-label">Deposit</label>
           <input
             type="number"
             class="form-control"
@@ -106,7 +111,7 @@
         </div>
 
         <div class="ml-3 mt-3">
-          <label for="payment">Метод Оплаты</label>
+          <label for="payment">Payment Type</label>
           <select
             class="form-control form-select"
             name="payType"
@@ -130,7 +135,7 @@
             id="flexCheckDefault"
           />
           <label class="form-check-label" for="flexCheckDefault">
-            Депозит Оплачен</label
+            Deposit Paid</label
           >
         </div>
         <div class="form-check">
@@ -142,7 +147,7 @@
             id="flexCheckDefault"
           />
           <label class="form-check-label" for="flexCheckDefault">
-            Цена Оплачена</label
+            Full Cost Paid</label
           >
         </div>
         <div class="form-check">
@@ -154,7 +159,7 @@
             id="flexCheckDefault"
           />
           <label class="form-check-label" for="flexCheckDefault">
-            Закрыть</label
+            Close</label
           >
         </div>
         <div class="form-check">
@@ -166,7 +171,7 @@
             id="flexCheckDefault"
           />
           <label class="form-check-label" for="flexCheckDefault">
-            Отменить</label
+            Cancel</label
           >
         </div>
       </div>
